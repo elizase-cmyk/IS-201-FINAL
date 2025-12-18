@@ -1,62 +1,73 @@
 /* Background color for the whole page */
 body {
-    background-color: lightpink;
+    background-color: #f8c8dc; /* soft pink */
     margin: 20px;
+    font-family: Arial, sans-serif;
 }
 
 /* Main heading style */
 h1 {
     color: purple;
-    font-family: Arial;
     text-align: center;
 }
- 
+
 /* Subheading style */
 h2 { 
     color: darkgreen;
-    font-family: Georgia;
+    font-family: Georgia, serif;
 }
 
 /* Regular text style */ 
-p{
+p {
     color: black;
-    font-family: Times New Roman;
+    font-family: "Times New Roman", serif;
     font-size: 18px;
+    line-height: 1.5;
 }
 
 /* First div - for flower facts */
 .facts-box { 
-    background-color: lightyellow;
+    background-color: #fff7cc; /* light yellow */
     padding: 15px;
-    margin: 10px;
-border: 2px solid orange;
+    margin: 15px 0;
+    border: 2px solid orange;
+    border-radius: 8px;
 }
 
 /* Second div - for tips */
-.tips-box{
-    background-color: lightblue; 
+.tips-box {
+    background-color: #d9ecff; /* light blue */
     padding: 15px;
-    Margin: 10px; 
-    border: 2px solid blue;
+    margin: 15px 0;
+    border: 2px solid #3399ff;
+    border-radius: 8px;
 }
 
 /* Third div - for resources */
 .resources-box {
-    background-color: lightgreen;
+    background-color: #ddf5dd; /* light green */
     padding: 15px; 
-    margin: 10px;
+    margin: 15px 0;
     border: 2px solid green;
+    border-radius: 8px;
 }
 
 /* Make images look nice */
 img {
     width: 500px;
+    max-width: 100%;
     display: block;
     margin: 20px auto;
+    border-radius: 8px;
 }
 
-/* Links*/
-a{
+/* Links */
+a {
     color: purple; 
-    font-family: Arial;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
