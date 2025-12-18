@@ -1,90 +1,104 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My Flower Page</title>
+<head>
+    <title>My Flower Page</title>
     <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
+</head>
 
-        <h1 id="top"></h1>All ABout Flowers</h1>
-   
-        <p> <a href="index.html">Go back to main page</a></p>
+<body>
 
-<img src="https://images.unsplash.com/photo-1597848212624-e530d1d30b2d?w=600" alt="pink flowers">
+    <h1 id="top">All About Flowers</h1>
 
-<h2>Why I Like Flowers</h2>
-<p>Flowers are pretty and they smell good. They come in lots of colors and shapes. I love how they look in big gardens.</p>
+    <p><a href="index.html">Go back to main page</a></p>
 
-<h2>Types of Flowers I Know</h2>
+    <img src="https://tse2.mm.bing.net/th/id/OIP.X_am_XuBxBfeUKJ16slh7QHaEK?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="pink flowers">
 
-<ol>
-    <li>Easy flowers to grow
-        <ul>
-            <li>Sunflowers</li>
-            <li>Hibiscus</li>
-            <li>Daisies</li>
-        </ul>
-    </li>
-    <li>Harder flowers to grow
-        <ul>
-            <li>Roses</li>
-            <li>Orchids</li>
-            <li>Tulips</li>
-        </ul>
-    </li>
-</ol>
+    <h2>Why I Like Flowers</h2>
+    <p>Flowers are pretty and they smell good. They come in lots of colors and shapes. I love how they look in big gardens.</p>
 
-<h2>A Video About Flowers</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/L88q8sL2pYc" frameborder="0" allowfullscreen></iframe>
+    <h2>Types of Flowers I Know</h2>
 
-<h2>Flower Data Chart</h2>
-<p> This shows information about flowers:</p>
+    <ol>
+        <li>Easy flowers to grow
+            <ul>
+                <li>Sunflowers</li>
+                <li>Hibiscus</li>
+                <li>Daisies</li>
+            </ul>
+        </li>
+        <li>Harder flowers to grow
+            <ul>
+                <li>Roses</li>
+                <li>Orchids</li>
+                <li>Tulips</li>
+            </ul>
+        </li>
+    </ol>
 
-<div class='tableauPlaceholder' style='position: relative'>
+    <h2>A Video About Flowers</h2>
+
+    <!-- Correct YouTube embed -->
+    <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/AOQrs-2fOQg"
+        title="Flowers Video"
+        frameborder="0"
+        allowfullscreen>
+    </iframe>
+
+    <h2>Flower Data Chart</h2>
+    <p>This shows information about sales data using Tableau:</p>
+
+    <!-- ✅ WORKING TABLEAU PUBLIC EMBED -->
+    <div class="tableauPlaceholder" id="vizSuperstore" style="position: relative;">
         <noscript>
-            <a href='#'><img alt='Flower Shop Sales' src='https://public.tableau.com/static/images/Fl/FlowerShop_16832645851520/Dashboard1/1_rss.png' style='border: none' /></a>
+            <a href="#">
+                <img alt="Tableau Superstore"
+                     src="https://public.tableau.com/static/images/Su/SuperstoreSample/Dashboard1/1_rss.png"
+                     style="border: none" />
+            </a>
         </noscript>
-        <object class='tableauViz' style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-            <param name='embed_code_version' value='3' />
-            <param name='site_root' value='' />
-            <param name='name' value='FlowerShop_16832645851520/Dashboard1' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='static_image' value='https://public.tableau.com/static/images/Fl/FlowerShop_16832645851520/Dashboard1/1.png' />
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='yes' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
+
+        <object class="tableauViz" style="display:none;">
+            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+            <param name="embed_code_version" value="3" />
+            <param name="site_root" value="" />
+            <param name="name" value="SuperstoreSample/Dashboard1" />
+            <param name="tabs" value="no" />
+            <param name="toolbar" value="yes" />
+            <param name="showVizHome" value="n" />
         </object>
-        </div>
-    <script type='text/javascript'>
-        var divElement = document.getElementById('viz1734470000000');
-        var vizElement = divElement.getElementsByTagName('object')[0];
-        vizElement.style.width='100%';
-        vizElement.style.height='600px';
-        var scriptElement = document.createElement('script');
-        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    </div>
+
+    <script type="text/javascript">
+        var divElement = document.getElementById("vizSuperstore");
+        var vizElement = divElement.getElementsByTagName("object")[0];
+        vizElement.style.width = "100%";
+        vizElement.style.height = "600px";
+
+        var scriptElement = document.createElement("script");
+        scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
         vizElement.parentNode.insertBefore(scriptElement, vizElement);
     </script>
-   <h2 id="bottom">More Flower Facts</h2>
 
-   <div class="facts-box">
-   <p>Sunflowers can grow really tall - some get over 10 feet high!</p>
-   <p>Roses come in many colors like red, pink, yellow, and white.</p>
-   </div>
+    <h2 id="bottom">More Flower Facts</h2>
 
-   <div class="tips-box">
-    <p>If you want flowers to last longer in a vase, change the water every day.</p>
-   </div>
+    <div class="facts-box">
+        <p>Sunflowers can grow really tall — some get over 10 feet high!</p>
+        <p>Roses come in many colors like red, pink, yellow, and white.</p>
+    </div>
 
-   <div class="resources-box">
-    <p>Want to learn more? Check out your local garden center!</p>
-   </div>
+    <div class="tips-box">
+        <p>If you want flowers to last longer in a vase, change the water every day.</p>
+    </div>
 
-   <p><a href="#top">Jump back to the top</a></p>
+    <div class="resources-box">
+        <p>Want to learn more? Check out your local garden center!</p>
+    </div>
 
-   <p><a href="index.html">Back to main page</a></p>
+    <p><a href="#top">Jump back to the top</a></p>
+    <p><a href="index.html">Back to main page</a></p>
+
 </body>
 </html>
