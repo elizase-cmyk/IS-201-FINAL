@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Island Water — Projects</title>
+  <meta name="description" content="Projects page with island/water interactions per project." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"></div>
+      <div class="brandText">
+        <div class="brandTitle">Island Water</div>
+        <div class="brandSub">Projects</div>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="navLink" href="index.html">Home</a>
+      <a class="navLink" href="resume.html">Resume</a>
+      <a class="navLink" aria-current="page" href="projects.html">Projects</a>
+      <a class="navLink" href="scratch.html">Scratch</a>
+    </nav>
+  </header>
+
+  <main id="main" class="main">
+    <section class="section">
+      <div class="sectionHeader">
+        <h1 class="h1">Projects</h1>
+        <p class="muted">Each project includes an island/water interactive behavior.</p>
+      </div>
+
+      <div class="projectGrid">
+        <!-- Project 1: Ripple card -->
+        <article class="projectCard rippleCard" data-project="reef">
+          <header class="projectHead">
+            <h2 class="h3">Reef Ripple UI</h2>
+            <div class="tagRow">
+              <span class="tag">Canvas</span>
+              <span class="tag">Interaction</span>
+            </div>
+          </header>
+          <p class="p">Hover/touch to send ripples across a reef-tinted surface.</p>
+          <div class="projectStage">
+            <canvas class="miniCanvas" width="560" height="180" aria-label="Ripple interaction canvas"></canvas>
+          </div>
+          <div class="projectFoot">
+            <button class="btn ghost projectBtn" type="button">Send wave</button>
+            <span class="muted tiny">Tip: move slowly for softer ripples.</span>
+          </div>
+        </article>
+
+        <!-- Project 2: Waterfall text reveal -->
+        <article class="projectCard" data-project="falls">
+          <header class="projectHead">
+            <h2 class="h3">Waterfall Reveal</h2>
+            <div class="tagRow">
+              <span class="tag">CSS Mask</span>
+              <span class="tag">Scroll</span>
+            </div>
+          </header>
+          <p class="p">Scroll to let “water” wash downward, revealing details in layers.</p>
+          <div class="waterfallBox" aria-hidden="true">
+            <div class="waterCurtain" id="waterCurtain"></div>
+            <div class="waterfallText">
+              <div class="wfLine">Scope: multi-page site architecture</div>
+              <div class="wfLine">Focus: accessibility + clean navigation</div>
+              <div class="wfLine">Technique: layered gradients + soft motion</div>
+            </div>
+          </div>
+          <div class="projectFoot">
+            <button class="btn ghost" type="button" id="resetCurtain">Reset</button>
+            <span class="muted tiny">Tip: scroll near this card.</span>
+          </div>
+        </article>
+
+        <!-- Project 3: Current-based sorting -->
+        <article class="projectCard" data-project="canoe">
+          <header class="projectHead">
+            <h2 class="h3">Lagoon Current Sort</h2>
+            <div class="tagRow">
+              <span class="tag">DOM</span>
+              <span class="tag">Physics-like</span>
+            </div>
+          </header>
+          <p class="p">A gentle current “pulls” tags; click to change flow direction.</p>
+          <div class="currentPond" aria-label="Current pond interactive area">
+            <button class="floatTag" type="button">HTML</button>
+            <button class="floatTag" type="button">CSS</button>
+            <button class="floatTag" type="button">JS</button>
+            <button class="floatTag" type="button">Tableau</button>
+            <button class="floatTag" type="button">UX</button>
+            <div class="pondHint tiny muted">Click pond to change current • Drag tags</div>
+          </div>
+          <div class="projectFoot">
+            <span class="chip" id="currentChip">Current: →</span>
+            <span class="muted tiny">Tip: throw a tag by releasing while moving.</span>
+          </div>
+        </article>
+
+        <!-- Project 4: Floral particle bloom -->
+        <article class="projectCard" data-project="bloom">
+          <header class="projectHead">
+            <h2 class="h3">Hibiscus Bloom Particles</h2>
+            <div class="tagRow">
+              <span class="tag">Procedural</span>
+              <span class="tag">Pointer</span>
+            </div>
+          </header>
+          <p class="p">Tap/click to grow a brief floral burst that drifts like petals.</p>
+          <div class="bloomStage" aria-label="Bloom particle stage">
+            <canvas class="bloomCanvas" width="560" height="220"></canvas>
+          </div>
+          <div class="projectFoot">
+            <button class="btn ghost bloomBtn" type="button">Bloom</button>
+            <span class="muted tiny">Tip: hold Shift while clicking for denser petals.</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footerInner">
+      <div class="footerLeft">© <span id="year"></span></div>
+      <div class="footerRight">
+        <a class="textLink" href="index.html">Home</a>
+        <span class="sep">•</span>
+        <a class="textLink" href="resume.html">Resume</a>
+        <span class="sep">•</span>
+        <a class="textLink" href="scratch.html">Scratch</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

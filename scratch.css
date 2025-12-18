@@ -1,0 +1,62 @@
+/* Background color for the whole page */
+body {
+    background-color: lightpink;
+    margin: 20px;
+}
+
+/* Main heading style */
+h1 {
+    color: purple;
+    font-family: Arial;
+    text-align: center;
+}
+ 
+/* Subheading style */
+h2 { 
+    color: darkgreen;
+    font-family: Georgia;
+}
+
+/* Regular text style */ 
+p{
+    color: black;
+    font-family: Times New Roman;
+    font-size: 18px;
+}
+
+/* First div - for flower facts */
+.facts-box { 
+    background-color: lightyellow;
+    padding: 15px;
+    margin: 10px;
+border: 2px solid orange;
+}
+
+/* Second div - for tips */
+.tips-box{
+    background-color: lightblue; 
+    padding: 15px;
+    Margin: 10px; 
+    border: 2px solid blue;
+}
+
+/* Third div - for resources */
+.resources-box {
+    background-color: lightgreen;
+    padding: 15px; 
+    margin: 10px;
+    border: 2px solid green;
+}
+
+/* Make images look nice */
+img {
+    width: 500px;
+    display: block;
+    margin: 20px auto;
+}
+
+/* Links*/
+a{
+    color: purple; 
+    font-family: Arial;
+}

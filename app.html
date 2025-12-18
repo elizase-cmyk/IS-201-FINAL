@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Petal Picker App</title>
+  <style>
+    :root{
+      --bg:#fff7fb; --ink:#1f1b22; --muted:#5b5561;
+      --border: rgba(40,20,50,0.12);
+      --shadow: 0 12px 30px rgba(28, 10, 40, 0.10);
+      --petal1:#ff4da6; --petal2:#8b5cf6; --petal3:#ffd1e8; --petal4:#e9ddff;
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 600px at 10% 10%, rgba(255, 77, 166, 0.14), transparent 60%),
+        radial-gradient(800px 520px at 90% 15%, rgba(139, 92, 246, 0.14), transparent 60%),
+        radial-gradient(1000px 700px at 30% 95%, rgba(255, 209, 232, 0.45), transparent 65%),
+        var(--bg);
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:22px;
+    }
+    .wrap{ width:min(900px, 94vw); }
+    .topbar{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    a{ color: var(--ink); text-decoration:none; border-bottom:1px dashed rgba(139,92,246,0.35); }
+    a:hover{ border-bottom-color: rgba(255,77,166,0.45); }
+
+    .card{
+      background: rgba(255,255,255,0.9);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    h1{ margin:0 0 6px; letter-spacing:-0.5px; }
+    .muted{ color: var(--muted); margin:0; }
+
+    .grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap:14px; margin-top:14px; }
+    @media (max-width: 860px){ .grid{ grid-template-columns: 1fr; } }
+
+    .petal-field{
+      position:relative;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background:
+        radial-gradient(600px 240px at 10% 10%, rgba(255,77,166,0.12), transparent 60%),
+        radial-gradient(600px 240px at 90% 90%, rgba(139,92,246,0.12), transparent 60%),
+        rgba(255,255,255,0.6);
+      height: 360px;
+      overflow:hidden;
+    }
+    .petal{
+      position:absolute;
+      width: 78px; height: 78px;
+      border-radius: 22px;
+      border: 1px solid rgba(40,20,50,0.10);
+      transform: rotate(12deg);
+      display:grid; place-items:center;
+      cursor:pointer;
+      user-select:none;
+      box-shadow: 0 10px 22px rgba(30,10,40,0.10);
+      transition: transform .12s ease, filter .12s ease;
+      font-weight:800;
+    }
+    .petal:hover{ transform: scale(1.04) rotate(8deg); filter: brightness(1.02); }
+
+    .controls{
+      display:grid;
+      gap:10px;
+    }
+    .btn{
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(255,77,166,0.16), rgba(139,92,246,0.16));
+      border-radius: 14px;
+      padding: 12px 14px;
+      cursor:pointer;
+      font-weight:800;
+    }
+    .btn:hover{ filter: brightness(1.02); }
+    .output{
+      padding: 12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(40,20,50,0.10);
+      background: rgba(255,255,255,0.75);
+      min-height: 88px;
+    }
+    .tag{
+      display:inline-block;
+      font-size:12px;
+      font-weight:800;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(40,20,50,0.10);
+      background: rgba(255,255,255,0.8);
+      margin-right:6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <h1>Petal Picker</h1>
+        <p class="muted">Click petals to build a bouquet “mood” + get a matching mini message.</p>
+      </div>
+      <div>
+        <a href="scratch.html">Back to Scratch</a> • <a href="index.html">Home</a>
+      </div>
+    </div>
+
+    <div class="card grid">
+      <div>
+        <div class="petal-field" id="field" aria-label="Petal field"></div>
+        <p class="muted" style="margin-top:10px;">
+          Tip: Try different combos — the message changes based on your picks.
+        </p>
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="regen">Regrow Petals</button>
+        <button class="btn" id="clear">Clear Picks</button>
+
+        <div class="output" id="out">
+          <div style="margin-bottom:8px;">
+            <span class="tag">Picks</span> <span id="picks" class="muted">none yet</span>
+          </div>
+          <div>
+            <span class="tag">Message</span>
+            <div id="msg" style="margin-top:6px;">Click a petal to start.</div>
+          </div>
+        </div>
+
+        <div class="output">
+          <span class="tag">How it works</span>
+          <p class="muted" style="margin:8px 0 0;">
+            Each petal has a “trait.” Your combo generates a themed message.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TRAITS = [
+      {name:"Bright", a:"Bright energy", c:"linear-gradient(135deg, rgba(255,77,166,0.45), rgba(255,209,232,0.65))"},
+      {name:"Calm", a:"Calm focus", c:"linear-gradient(135deg, rgba(139,92,246,0.30), rgba(233,221,255,0.75))"},
+      {name:"Bold", a:"Bold confidence", c:"linear-gradient(135deg, rgba(255,77,166,0.55), rgba(139,92,246,0.35))"},
+      {name:"Kind", a:"Kind warmth", c:"linear-gradient(135deg, rgba(255,209,232,0.75), rgba(255,255,255,0.85))"},
+      {name:"Spark", a:"Playful spark", c:"linear-gradient(135deg, rgba(233,221,255,0.85), rgba(255,77,166,0.22))"},
+      {name:"Steady", a:"Steady progress", c:"linear-gradient(135deg, rgba(255,255,255,0.75), rgba(139,92,246,0.18))"},
+    ];
+
+    const field = document.getElementById("field");
+    const picksEl = document.getElementById("picks");
+    const msgEl = document.getElementById("msg");
+
+    let picks = [];
+
+    function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+    function layoutPetals(){
+      field.innerHTML = "";
+      picks = [];
+      renderOut();
+
+      const w = field.clientWidth;
+      const h = field.clientHeight;
+
+      for(let i=0;i<12;i++){
+        const t = TRAITS[rand(0, TRAITS.length-1)];
+        const p = document.createElement("div");
+        p.className = "petal";
+        p.textContent = "✿";
+        p.style.left = rand(10, Math.max(10, w-90)) + "px";
+        p.style.top = rand(10, Math.max(10, h-90)) + "px";
+        p.style.background = t.c;
+        p.dataset.trait = t.name;
+
+        p.addEventListener("click", () => {
+          const trait = p.dataset.trait;
+          const idx = picks.indexOf(trait);
+          if(idx === -1){
+            picks.push(trait);
+            p.style.outline = "3px solid rgba(31,27,34,0.18)";
+            p.style.transform = "scale(1.05) rotate(6deg)";
+          } else {
+            picks.splice(idx, 1);
+            p.style.outline = "none";
+            p.style.transform = "rotate(12deg)";
+          }
+          renderOut();
+        });
+
+        field.appendChild(p);
+      }
+    }
+
+    function messageFor(traits){
+      if(traits.length === 0) return "Click a petal to start.";
+      const has = (x) => traits.includes(x);
+
+      if(has("Bold") && has("Bright")) return "This bouquet says: show up confidently and keep it fun.";
+      if(has("Calm") && has("Steady")) return "This bouquet says: slow, consistent progress wins.";
+      if(has("Kind") && has("Spark")) return "This bouquet says: warmth + playfulness = magnetic energy.";
+      if(traits.length >= 4) return "This bouquet says: you’ve got range — keep that balanced momentum.";
+
+      return "This bouquet says: " + traits.map(t => TRAITS.find(x=>x.name===t).a).join(" + ") + ".";
+    }
+
+    function renderOut(){
+      picksEl.textContent = picks.length ? picks.join(", ") : "none yet";
+      msgEl.textContent = messageFor(picks);
+    }
+
+    document.getElementById("regen").addEventListener("click", layoutPetals);
+    document.getElementById("clear").addEventListener("click", () => {
+      // reset by relayout to clear styling
+      layoutPetals();
+    });
+
+    // init
+    window.addEventListener("load", layoutPetals);
+    window.addEventListener("resize", () => {
+      // keep it stable on resize
+      layoutPetals();
+    });
+  </script>
+</body>
+</html>
